@@ -1,0 +1,11 @@
+[15-Jun-2026 03:51:00 Europe/Berlin] Database Connection Failed: SQLSTATE[HY000] [1045] Access denied for user 'your_db_username'@'localhost' (using password: YES)
+[15-Jun-2026 03:51:38 Europe/Berlin] Database Connection Failed: SQLSTATE[HY000] [1045] Access denied for user 'your_db_username'@'localhost' (using password: YES)
+[15-Jun-2026 04:12:50 Europe/Berlin] Database Connection Failed: SQLSTATE[HY000] [1045] Access denied for user 'your_db_username'@'localhost' (using password: YES)
+[15-Jun-2026 04:25:24 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:25:24 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:34:53 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:34:53 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:47:44 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:47:44 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:55:41 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
+[15-Jun-2026 04:55:41 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\olusegun-agency\config\db.php on line 71
