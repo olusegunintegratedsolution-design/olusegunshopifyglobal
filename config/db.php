@@ -30,10 +30,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // 4. Database Credentials
-define('DB_HOST', 'your_live_mysql_host_address'); 
-define('DB_USER', 'your_live_database_username');
-define('DB_PASS', 'your_live_database_password');
-define('DB_NAME', 'your_live_database_name');
+// Update these values inside /config/db.php
+define('DB_HOST', 'b8xm9uevuuq51no00yp8-mysql.services.clever-cloud.com'); 
+define('DB_USER', 'your_clever_cloud_username'); // Provided in Clever Cloud panel
+define('DB_PASS', 'your_clever_cloud_password'); // Provided in Clever Cloud panel
+define('DB_NAME', 'b8xm9uevuuq51no00yp8');
 
 try {
     $pdo = new PDO(
