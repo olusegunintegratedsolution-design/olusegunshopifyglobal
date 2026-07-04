@@ -30,10 +30,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // 4. Database Credentials
-define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');             // XAMPP default username
-define('DB_PASS', '');                 // Leave this empty (no password)
-define('DB_NAME', 'olusegun_cms');     // The database you created
+define('DB_HOST', 'your_live_mysql_host_address'); 
+define('DB_USER', 'your_live_database_username');
+define('DB_PASS', 'your_live_database_password');
+define('DB_NAME', 'your_live_database_name');
 
 try {
     $pdo = new PDO(
