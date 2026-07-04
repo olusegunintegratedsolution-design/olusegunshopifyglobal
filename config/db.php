@@ -1,44 +1,37 @@
 <?php
-// Prevent execution of this script directly
 if (count(get_included_files()) == 1) exit("Direct access not permitted.");
 
-// 1. Error Reporting Configuration (Production settings: hide errors, write to log)
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+// Error Reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/../error_log.txt');
 
-// 2. Production Security Headers
-header("X-Frame-Options: SAMEORIGIN");
-header("X-Content-Type-Options: nosniff");
-header("X-XSS-Protection: 1; mode=block");
-header("Referrer-Policy: strict-origin-when-cross-origin");
-
-// 3. Secure Session Configurations
 if (session_status() === PHP_SESSION_NONE) {
     ini_set('session.cookie_httponly', 1);
     ini_set('session.use_only_cookies', 1);
-    
-    // Check if SSL is active on the server
-    $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-    if ($isSecure) {
-        ini_set('session.cookie_secure', 1);
-    }
-    
     session_start();
 }
 
-// 4. Database Credentials
-// Update these values inside /config/db.php
-define('DB_HOST', 'b8xm9uevuuq51no00yp8-mysql.services.clever-cloud.com'); 
-define('DB_USER', 'your_clever_cloud_username'); // Provided in Clever Cloud panel
-define('DB_PASS', 'your_clever_cloud_password'); // Provided in Clever Cloud panel
-define('DB_NAME', 'b8xm9uevuuq51no00yp8');
+// HYBRID CONFIGURATION (Detects local XAMPP vs. Live Clever Cloud automatically)
+if (getenv('MYSQL_ADDON_HOST')) {
+    // Live Server Credentials (Injected automatically by Clever Cloud)
+    define('DB_HOST', getenv('MYSQL_ADDON_HOST'));
+    define('DB_USER', getenv('MYSQL_ADDON_USER'));
+    define('DB_PASS', getenv('MYSQL_ADDON_PASSWORD'));
+    define('DB_NAME', getenv('MYSQL_ADDON_DB'));
+    define('DB_PORT', getenv('MYSQL_ADDON_PORT'));
+} else {
+    // Local XAMPP Credentials
+    define('DB_HOST', '127.0.0.1');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'olusegun_cms');
+    define('DB_PORT', '3306');
+}
 
 try {
     $pdo = new PDO(
-        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+        "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4",
         DB_USER,
         DB_PASS,
         [
@@ -48,11 +41,9 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    error_log("Database Connection Failed: " . $e->getMessage());
     die("Database Connection Error. Please verify your connection settings.");
 }
 
-// 5. Cross-Site Request Forgery (CSRF) Utilities
 function generateCsrfToken(): string {
     if (empty($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -67,7 +58,6 @@ function validateCsrfToken($token): bool {
     return hash_equals($_SESSION['csrf_token'], $token);
 }
 
-// 6. Security Sanitization Helpers
 function sanitize_output($data) {
     return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
 }
